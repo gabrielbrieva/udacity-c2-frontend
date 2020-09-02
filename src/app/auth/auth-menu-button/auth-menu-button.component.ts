@@ -16,6 +16,7 @@ import { User } from '../models/user.model';
 })
 export class AuthMenuButtonComponent implements OnInit {
 
+  // add public accessor to auth.currentUser$ and protect auth methods
   get currentUser$(): BehaviorSubject<User> { return this.auth.currentUser$; }
 
   constructor(
