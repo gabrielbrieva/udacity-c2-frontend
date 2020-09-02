@@ -6,6 +6,9 @@ import { AuthService } from '../services/auth.service';
 import { AuthLoginComponent } from '../auth-login/auth-login.component';
 import { AuthRegisterComponent } from '../auth-register/auth-register.component';
 
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../models/user.model';
+
 @Component({
   selector: 'app-auth-menu-button',
   templateUrl: './auth-menu-button.component.html',
@@ -13,10 +16,13 @@ import { AuthRegisterComponent } from '../auth-register/auth-register.component'
 })
 export class AuthMenuButtonComponent implements OnInit {
 
+  get currentUser$(): BehaviorSubject<User> { return this.auth.currentUser$; }
+
   constructor(
     private auth: AuthService,
     public modalController: ModalController
-    ) {}
+    ) {
+    }
 
   async presentmodal(ev: any) {
     const modal = await this.modalController.create({
